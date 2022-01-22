@@ -1,0 +1,11 @@
+https://github.com/Themysticlees/Beta
+
+public String getUsers(Model model){
+		
+		List<User> users = userService.getAllUsers();
+		model.addAttribute("users", users);
+		
+		return "users";
+	}
+
+
