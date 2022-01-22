@@ -73,11 +73,11 @@ public class HomeController {
 		String username = principle.getName();
 		String param2 = username;
 		ProcessBuilder pb = new ProcessBuilder("python",
-				"C:\\Users\\Sourav\\Desktop\\SpringBootForm New\\src\\main\\java\\net\\codejava\\controller/main.py",
+				"C:\\Users\\Sourav\\Desktop\\Springboot vote\\src\\main\\java\\net\\codejava\\controller/main.py",
 				"" + param2).inheritIO();
 		Process p = pb.start();
 		p.waitFor();
-		File file = new File("C:\\Users\\Sourav\\Desktop\\SpringBootForm New\\src\\main\\resources\\templates/out.txt");
+		File file = new File("C:\\Users\\Sourav\\Desktop\\Springboot vote\\src\\main\\resources\\templates/out.txt");
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		String st;
 		char c = '\0';
