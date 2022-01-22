@@ -22,30 +22,78 @@
   </head>
 
   <body>
-    <div
-      class="row shadow-lg p-3 mb-5 bg-body rounde"
-      style="border-radius: 2%"
-    >
-      <!-- instructions -->
-      <div id="popupmain" style="display: none">
-        <div id="popup">
-          <h1 id="newsHeading" style="padding-top: 3px">Instruction load...</h1>
-          <button id="buttonid">OK</button>
+    <div>
+      <div
+        id="popupmain"
+        style="display: none; top: 0px; left: 0px; right: 0px; bottom: 0px"
+      >
+        <div id="popup" style="overflow-y: scroll">
+          <h2 id="newsHeading" style="padding-top: 5%">Instructions</h2>
+
+          <div
+            style="
+              height: 0;
+              padding-bottom: calc(56.25%);
+              position: relative;
+              width: 100%;
+            "
+          >
+            <iframe
+              allow="autoplay; gyroscope;"
+              allowfullscreen
+              height="100%"
+              referrerpolicy="strict-origin"
+              src="https://www.kapwing.com/e/61ec00e8898a8e00e4fd0769?autoplay=true"
+              style="
+                border: 0;
+                height: 100%;
+                left: 0;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                padding: 50px;
+              "
+              width="100%"
+            ></iframe>
+          </div>
+
+          <div style="padding: 0% 5% 5% 5%">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
+            iure esse. Eveniet culpa ratione dolor soluta iure ipsa temporibus
+            corporis alias distinctio nihil iste voluptas illo, a nam corrupti
+            nobis autem deserunt quod cupiditate est molestias qui? Molestias
+            animi ab incidunt, distinctio, officia assumenda voluptas, nulla
+            quis deserunt natus est? corporis alias distinctio nihil iste
+            voluptas illo, a nam corrupti nobis autem deserunt quod cupiditate
+            est molestias qui? Molestias animi ab incidunt, distinctio, officia
+            assumenda voluptas, nulla quis deserunt natus est? corporis alias
+            distinctio nihil iste voluptas illo, a nam corrupti nobis autem
+            deserunt quod cupiditate est molestias qui? Molestias animi ab
+            incidunt, distinctio, officia assumenda voluptas, nulla quis
+            deserunt natus est
+          </div>
+
+          <button style="margin: 20px" class="btn btn-primary" id="buttonid">
+            OK
+          </button>
         </div>
       </div>
+      <div class="row shadow-lg p-3 mb-5 bg-body" style="border-radius: 2%">
+        <!-- instructions -->
 
-      <!--Left half -->
+        <!--Left half -->
 
-      <div class="col-lg-5">
-        <center>
-          <img
-            class="voting-img"
-            src="https://image.freepik.com/free-vector/voting-concept-illustration_114360-5972.jpg"
-            alt=""
-          />
-        </center>
+        <div class="col-lg-5">
+          <center>
+            <img
+              class="voting-img"
+              src="https://image.freepik.com/free-vector/voting-concept-illustration_114360-5972.jpg"
+              alt=""
+            />
+          </center>
 
-        <!--
+          <!--
             <div class="instructions">
                 <h3>Step 1: Fill the required fields carefully</h3>
                 <h3>Step 2: Upload the necessary documents in high clarity.</h3>
@@ -54,225 +102,225 @@
             
             https://png.pngtree.com/png-clipart/20201208/original/pngtree-hand-drawn-cartoon-american-presidential-election-love-box-illustration-png-image_5525991.jpg
         
-        -->
-      </div>
+        --></div>
 
-      <!--Right half -->
+        <!--Right half -->
 
-      <div class="col-lg-7 right">
-        <h2>Get Started</h2>
-        <p>
-          Already have an account. <a th:href="@{'/index'}"> Log in </a> here.
-        </p>
-        <form
-          class="row g-3"
-          style="margin: 10px 20px"
-          th:action="@{/register}"
-          method="post"
-          th:object="${user}"
-          enctype="multipart/form-data"
-        >
-          <div>
-            <div class="col">
-              <label for="inputEmail4" class="form-label">First Name</label>
+        <div class="col-lg-7 right">
+          <h2>Get Started</h2>
+          <p>
+            Already have an account. <a th:href="@{'/index'}"> Log in </a> here.
+          </p>
+          <form
+            class="row g-3"
+            style="margin: 10px 20px"
+            th:action="@{/register}"
+            method="post"
+            th:object="${user}"
+            enctype="multipart/form-data"
+          >
+            <div>
+              <div class="col">
+                <label for="inputEmail4" class="form-label">First Name</label>
+                <input
+                  id="fname"
+                  type="text"
+                  th:field="*{firstname}"
+                  required
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="col">
+                <label for="inputEmail4" class="form-label">Last Name</label>
+                <input
+                  id="lname"
+                  type="text"
+                  th:field="*{lastname}"
+                  required
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+              <div class="col">
+                <label for="inputEmail4" class="form-label">Password</label>
+                <input
+                  id="pass"
+                  type="password"
+                  th:field="*{password}"
+                  required
+                  class="form-control"
+                  placeholder="Password (at least 8 character)"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="inputDOB" class="form-label">Date of Birth</label>
               <input
-                id="fname"
-                type="text"
-                th:field="*{firstname}"
+                id="birth"
+                type="date"
+                th:field="*{birthday}"
                 required
                 class="form-control"
-                placeholder="First name"
+                placeholder="DD/MM/YYYY"
               />
             </div>
-            <div class="col">
-              <label for="inputEmail4" class="form-label">Last Name</label>
-              <input
-                id="lname"
-                type="text"
-                th:field="*{lastname}"
+            <div class="col-md-6">
+              <label for="inputState" class="form-label">Gender</label>
+              <select
+                id="inputState"
+                th:field="*{gender}"
                 required
-                class="form-control"
-                placeholder="Last name"
-              />
-            </div>
-            <div class="col">
-              <label for="inputEmail4" class="form-label">Password</label>
-              <input
-                id="pass"
-                type="password"
-                th:field="*{password}"
-                required
-                class="form-control"
-                placeholder="Password (at least 8 character)"
-              />
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <label for="inputDOB" class="form-label">Date of Birth</label>
-            <input
-              id="birth"
-              type="date"
-              th:field="*{birthday}"
-              required
-              class="form-control"
-              placeholder="DD/MM/YYYY"
-            />
-          </div>
-          <div class="col-md-6">
-            <label for="inputState" class="form-label">Gender</label>
-            <select
-              id="inputState"
-              th:field="*{gender}"
-              required
-              class="form-select"
-            >
-              <option
-                th:each="p : ${listgender}"
-                th:value="${p}"
-                th:text="${p}"
-              ></option>
-            </select>
-          </div>
-          <div class="col-12">
-            <label for="inputMobile" class="form-label">Mobile Number</label>
-            <input
-              type="text"
-              th:field="*{mobileno}"
-              required
-              class="form-control"
-              id="inputmobile"
-              placeholder="Enter your Mobile Number"
-            />
-          </div>
-          <div class="col-12">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input
-              type="text"
-              th:field="*{email}"
-              required
-              class="form-control"
-              id="inputEmail"
-              placeholder="Enter your email"
-            />
-          </div>
-          <div class="col-12">
-            <label for="inputAddress" class="form-label">Adhaar No.</label>
-            <input
-              id="adhaar"
-              type="text"
-              th:field="*{username}"
-              required
-              class="form-control"
-              placeholder="Enter your 12 digit Adhaar number"
-            />
-          </div>
-
-          <div div class="col-12">
-            <label>Photos: </label>
-            <input
-              type="file"
-              name="image"
-              id="fileimage"
-              required
-              class="form-control"
-              accept="image/png, image/jpeg, image/jpg"
-            /><br />
-
-            <p>
-              <img
-                id="thumbnail"
-                alt="Logo Preview"
-                src=""
-                height="200px"
-                width="150px"
-                style="margin-left: 200px"
-              />
-            </p>
-          </div>
-
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Address</label>
-            <input
-              type="text"
-              th:field="*{address}"
-              required
-              class="form-control"
-              id="inputAddress2"
-              placeholder="Apartment, studio, or floor"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select
-              id="inputState"
-              th:field="*{state}"
-              required
-              class="form-select"
-            >
-              <option
-                th:each="l : ${liststates}"
-                th:value="${l}"
-                th:text="${l}"
-              ></option>
-            </select>
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputCity" class="form-label">City</label>
-            <input
-              type="text"
-              th:field="*{city}"
-              required
-              class="form-control"
-              id="inputCity"
-            />
-          </div>
-          <div class="col-md-4">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input
-              type="text"
-              th:field="*{zip}"
-              required
-              class="form-control"
-              id="inputZip"
-            />
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                required
-                type="checkbox"
-                id="gridCheck"
-              />
-              <label class="form-check-label" for="gridCheck">
-                I agree to all Terms and Conditions.
-              </label>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="d-grid gap-2">
-              <button
-                type="button"
-                id="btn"
-                class="btn btn-outline-primary btn-lg"
-                onclick="sweetalertclick()"
+                class="form-select"
               >
-                Register
-              </button>
-              <button
-                type="submit"
-                id="btn1"
-                hidden
-                class="btn btn-outline-primary btn-lg"
-              >
-                Register
-              </button>
+                <option
+                  th:each="p : ${listgender}"
+                  th:value="${p}"
+                  th:text="${p}"
+                ></option>
+              </select>
             </div>
-          </div>
-        </form>
+            <div class="col-12">
+              <label for="inputMobile" class="form-label">Mobile Number</label>
+              <input
+                type="text"
+                th:field="*{mobileno}"
+                required
+                class="form-control"
+                id="inputmobile"
+                placeholder="Enter your Mobile Number"
+              />
+            </div>
+            <div class="col-12">
+              <label for="inputEmail" class="form-label">Email</label>
+              <input
+                type="text"
+                th:field="*{email}"
+                required
+                class="form-control"
+                id="inputEmail"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Adhaar No.</label>
+              <input
+                id="adhaar"
+                type="text"
+                th:field="*{username}"
+                required
+                class="form-control"
+                placeholder="Enter your 12 digit Adhaar number"
+              />
+            </div>
+
+            <div div class="col-12">
+              <label>Photos: </label>
+              <input
+                type="file"
+                name="image"
+                id="fileimage"
+                required
+                class="form-control"
+                accept="image/png, image/jpeg, image/jpg"
+              /><br />
+
+              <p>
+                <img
+                  id="thumbnail"
+                  alt="Logo Preview"
+                  src=""
+                  height="200px"
+                  width="150px"
+                  style="margin-left: 200px"
+                />
+              </p>
+            </div>
+
+            <div class="col-12">
+              <label for="inputAddress2" class="form-label">Address</label>
+              <input
+                type="text"
+                th:field="*{address}"
+                required
+                class="form-control"
+                id="inputAddress2"
+                placeholder="Apartment, studio, or floor"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">State</label>
+              <select
+                id="inputState"
+                th:field="*{state}"
+                required
+                class="form-select"
+              >
+                <option
+                  th:each="l : ${liststates}"
+                  th:value="${l}"
+                  th:text="${l}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputCity" class="form-label">City</label>
+              <input
+                type="text"
+                th:field="*{city}"
+                required
+                class="form-control"
+                id="inputCity"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="inputZip" class="form-label">Zip</label>
+              <input
+                type="text"
+                th:field="*{zip}"
+                required
+                class="form-control"
+                id="inputZip"
+              />
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  required
+                  type="checkbox"
+                  id="gridCheck"
+                />
+                <label class="form-check-label" for="gridCheck">
+                  I agree to all Terms and Conditions.
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="d-grid gap-2">
+                <button
+                  type="button"
+                  id="btn"
+                  class="btn btn-outline-primary btn-lg"
+                  onclick="sweetalertclick()"
+                >
+                  Register
+                </button>
+                <button
+                  type="submit"
+                  id="btn1"
+                  hidden
+                  class="btn btn-outline-primary btn-lg"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <script src="/SweetAlert/sweetalert2.all.min.js"></script>
