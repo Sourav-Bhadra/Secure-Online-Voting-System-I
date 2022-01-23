@@ -62,9 +62,19 @@
 
       <div id="popupmain" style="display: none">
         <div id="popup" style="overflow-y: scroll">
-          <h2 id="newsHeading" style="padding-top: 5%; padding-bottom: 3%;">Instructions</h2>
+          <h2 id="newsHeading" style="padding-top: 5%; padding-bottom: 3%">
+            Instructions
+          </h2>
 
           <video
+            style="
+              width: 450px;
+              -moz-border-radius: 40px;
+              -webkit-border-radius: 40px;
+              border-radius: 40px;
+              border-style: solid;
+              overflow: hidden;
+            "
             autoplay
             id="videomute"
             width="400"
@@ -81,20 +91,73 @@
             Your browser does not support HTML video.
           </video>
 
-          <div style="padding: 0% 5% 5% 5%">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-            iure esse. Eveniet culpa ratione dolor soluta iure ipsa temporibus
-            corporis alias distinctio nihil iste voluptas illo, a nam corrupti
-            nobis autem deserunt quod cupiditate est molestias qui? Molestias
-            animi ab incidunt, distinctio, officia assumenda voluptas, nulla
-            quis deserunt natus est? corporis alias distinctio nihil iste
-            voluptas illo, a nam corrupti nobis autem deserunt quod cupiditate
-            est molestias qui? Molestias animi ab incidunt, distinctio, officia
-            assumenda voluptas, nulla quis deserunt natus est? corporis alias
-            distinctio nihil iste voluptas illo, a nam corrupti nobis autem
-            deserunt quod cupiditate est molestias qui? Molestias animi ab
-            incidunt, distinctio, officia assumenda voluptas, nulla quis
-            deserunt natus est
+          <div style="padding: 5% 5% 5% 5%">
+            <h6 style="text-align: justify">
+              Hello everyone! Welcome to our website, where now you can cast
+              your vote online, and that too from your home! Explore the various
+              features of our website, and embrace the future! Read the
+              instructions below carefully, before proceeding. And dont forget
+              to Register, and be a part of this campain ! Thank you!
+            </h6>
+            <hr />
+
+            <h4 style="text-align: left">
+              <b><u>Register</u></b>
+            </h4>
+            <h6 style="text-align: justify">
+              To create an account, Users need to register themselves to this
+              website. You can head to the <b> Register Page</b> and register
+              yourself today!
+            </h6>
+            <hr />
+            <h4 style="text-align: left">
+              <b><u>Login</u></b>
+            </h4>
+            <h6 style="text-align: justify">
+              In order to login the User needs to use provide their Adhar ID and
+              password which they provided during registration. Upon successful
+              login, they will be redirected to the user home page. From there
+              they can explore other features!
+            </h6>
+            <hr />
+            <h4 style="text-align: left">
+              <b><u>Voting process</u></b>
+            </h4>
+            <h6 style="text-align: justify; padding-bottom: 2px">
+              This feature is accessible from the user home page, which means
+              our user needs to be a registered user in oder to view this
+              feature. Users will find the <b> Voting </b> option in the
+              navigation bar. By clicking that user will undergo two different
+              Verification processes and then they can cast their vote.
+            </h6>
+
+            <ul style="text-align: justify">
+              <li>
+                <h5>Face Verification</h5>
+                <h6>
+                  Users need to provide Camera access permission for this step.
+                  They will undergo a Verification for a few seconds. If the
+                  Verification is successful they will redirected to the next
+                  page. If the Verification fails then they will be logged out.
+                </h6>
+              </li>
+              <li>
+                <h5>OTP Verification</h5>
+                <h6>
+                  After successfully completing the Face Verification, users
+                  will receive an OTP in their registered email which they need
+                  to enter.
+                </h6>
+              </li>
+            </ul>
+
+            <hr />
+            <h6>
+              After successfully completing all the steps, the user can cast
+              their vote digitally and enjoy their voting rights ! <br />We hope
+              you have an amazing experience. Thank you !
+            </h6>
+            <hr />
           </div>
 
           <button
@@ -149,11 +212,8 @@
                   <!-- /.sub-menu -->
                 </li>
                 <li>
-                  <a href="#">Pages</a>
-                  <ul class="sub-menu">
-                    <li><a href="event.html">Events</a></li>
-                    <li><a href="event-details.html">Event Details</a></li>
-                  </ul>
+                  <a href="#">Vote</a>
+
                   <!-- /.sub-menu -->
                 </li>
 
@@ -232,7 +292,7 @@
                     type="password"
                     name="password"
                     placeholder="Enter Password"
-                    maxlength="8"
+                    minlength="8"
                     class="formInput"
                     id="exampleInputPassword1"
                   />
@@ -1268,11 +1328,16 @@
           setTimeout(function () {
             $("#popupmain").css("display", "block");
             localStorage.setItem("popState", "shown");
+            document.querySelector("#videomute").autoplay = false;
           }, 1000);
 
           $("#buttonid").click(function () {
             $("#popupmain").css("display", "none");
           });
+        }
+
+        if (!localStorage.getItem("videoState")) {
+          disableAutoplay(); // Run the function below.
         }
       });
 
@@ -1288,6 +1353,11 @@
 
       function enableMute() {
         vid.muted = true;
+      }
+
+      function disableAutoplay() {
+        vid.autoplay = false;
+        vid.load();
       }
     </script>
   </body>

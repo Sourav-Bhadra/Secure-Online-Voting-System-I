@@ -57,19 +57,11 @@
           </video>
 
           <div style="padding: 0% 5% 5% 5%">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima,
-            iure esse. Eveniet culpa ratione dolor soluta iure ipsa temporibus
-            corporis alias distinctio nihil iste voluptas illo, a nam corrupti
-            nobis autem deserunt quod cupiditate est molestias qui? Molestias
-            animi ab incidunt, distinctio, officia assumenda voluptas, nulla
-            quis deserunt natus est? corporis alias distinctio nihil iste
-            voluptas illo, a nam corrupti nobis autem deserunt quod cupiditate
-            est molestias qui? Molestias animi ab incidunt, distinctio, officia
-            assumenda voluptas, nulla quis deserunt natus est? corporis alias
-            distinctio nihil iste voluptas illo, a nam corrupti nobis autem
-            deserunt quod cupiditate est molestias qui? Molestias animi ab
-            incidunt, distinctio, officia assumenda voluptas, nulla quis
-            deserunt natus est
+            <h4 style="padding-top: 5%; text-align: left">
+              <b><u>This is not for you</u></b>
+            </h4>
+            <h6 style="text-align: justify"></h6>
+            <hr />
           </div>
 
           <button
@@ -113,7 +105,11 @@
         <div class="col-lg-7 right">
           <h2>Get Started</h2>
           <p>
-            Already have an account. <a th:href="@{'/index'}"> Log in </a> here.
+            Already have an account.
+
+            <a th:href="@{'/index'}">Log in</a>
+
+            here.
           </p>
           <form
             class="row g-3"
@@ -147,24 +143,33 @@
                 />
               </div>
               <div class="col">
-                <label for="inputEmail4" class="form-label">Password</label>
+                <label for="inputEmail4" class="form-label">Password </label>
                 <input
                   id="pass"
                   type="password"
                   th:field="*{password}"
                   required
                   class="form-control"
-                  placeholder="Password (at least 8 character)"
+                  placeholder="Password (at least 8 characters)"
                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 />
               </div>
               <div id="message">
-                <h3 style="font-size: 20px;padding-left: 20px;padding-bottom: 0px;">Password must contain the following:</h3>
-                <p id="letter" class="invalid" style="padding-top: 2px;">A <b>lowercase</b> letter</p>
+                <h3
+                  style="
+                    font-size: 15px;
+                    padding-left: 20px;
+                    padding-bottom: 0px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  Your Password must contain the following:
+                </h3>
+                <p id="letter" class="invalid">A <b>Lowercase</b> letter</p>
                 <p id="capital" class="invalid">
-                  A <b>capital (uppercase)</b> letter
+                  A <b>Capital (uppercase)</b> letter
                 </p>
-                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="number" class="invalid">A <b>Number</b></p>
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
               </div>
             </div>
@@ -204,6 +209,7 @@
                 class="form-control"
                 id="inputmobile"
                 placeholder="Enter your Mobile Number"
+                minlength="10"
               />
             </div>
             <div class="col-12">
@@ -226,10 +232,11 @@
                 required
                 class="form-control"
                 placeholder="Enter your 12 digit Adhaar number"
+                minlength="12"
               />
             </div>
 
-            <div div class="col-12">
+            <div class="col-12">
               <label>Photos: </label>
               <input
                 type="file"
@@ -247,7 +254,7 @@
                   src=""
                   height="200px"
                   width="150px"
-                  style="margin-left: 200px"
+                  style="margin-left: 200px; display: none;"
                 />
               </p>
             </div>
@@ -337,88 +344,12 @@
         </div>
       </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/SweetAlert/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" th:inline="javascript">
-      function sweetalertclick() {
-        var fname = $("#fname").val();
-        var lname = $("#lname").val();
-        var pass = $("#pass").val();
-        var birth = $("#birth").val();
-        var gender = $("#gender").val();
-        var adhaar = $("#adhaar").val();
-        var photo = $("#fileimage").val();
-        var add = $("#inputAddress2").val();
-        var inputState = $("#inputstate").val();
-        var city = $("#inputCity").val();
-        var zip = $("#inputZip").val();
-        var gridcheck = document.getElementById("gridCheck").checked;
-
-        if (
-          fname == "" ||
-          lname == "" ||
-          pass == "" ||
-          birth == "" ||
-          gender == "" ||
-          adhaar == "" ||
-          photo == "" ||
-          add == "" ||
-          inputState == "" ||
-          city == "" ||
-          zip == "" ||
-          gridcheck == false
-        ) {
-          swal({
-            title: "Fields empty",
-            text: "Please check the fields",
-            icon: "warning",
-            button: "ok",
-          });
-        } else {
-          swal({
-            title: "Are you sure?",
-            text: "Once Click your data will be saved to us!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          }).then((willDelete) => {
-            if (willDelete) {
-              document.getElementById("btn1").click();
-              swal({
-                title: "Registration Successful",
-                text: "Redirecting you to the Login Page",
-                icon: "success",
-                buttons: false,
-              }).then(function () {
-                //document.getElementById("btn1").click();
-                document.write("Redirecting to Index Page");
-                // document.location.href = '/index'
-              });
-            } else {
-              swal("Your data is not save!");
-            }
-          });
-        }
-      }
-
-      $(document).ready(function () {
-        $("#fileimage").change(function () {
-          showImageThumbnail(this);
-        });
-      });
-
-      function showImageThumbnail(fileInput) {
-        file = fileInput.files[0];
-        reader = new FileReader();
-
-        reader.onload = function (e) {
-          $("#thumbnail").attr("src", e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
+      var cond = true;
       $(document).ready(function () {
         setTimeout(function () {
           $("#popupmain").css("display", "block");
@@ -462,15 +393,19 @@
       myInput.onkeyup = function () {
         // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;
+
         if (myInput.value.match(lowerCaseLetters)) {
           letter.classList.remove("invalid");
           letter.classList.add("valid");
+          cond = true;
         } else {
           letter.classList.remove("valid");
           letter.classList.add("invalid");
+          cond = false;
         }
 
         // Validate capital letters
+
         var upperCaseLetters = /[A-Z]/g;
         if (myInput.value.match(upperCaseLetters)) {
           capital.classList.remove("invalid");
@@ -478,6 +413,7 @@
         } else {
           capital.classList.remove("valid");
           capital.classList.add("invalid");
+          cond = false;
         }
 
         // Validate numbers
@@ -488,6 +424,7 @@
         } else {
           number.classList.remove("valid");
           number.classList.add("invalid");
+          cond = false;
         }
 
         // Validate length
@@ -497,8 +434,114 @@
         } else {
           length.classList.remove("valid");
           length.classList.add("invalid");
+          cond = false;
         }
       };
+
+      // ----------------------------------------------------------------
+
+      function sweetalertclick() {
+        var fname = $("#fname").val();
+        var lname = $("#lname").val();
+        var pass = $("#pass").val();
+        var birth = $("#birth").val();
+        var gender = $("#gender").val();
+        var adhaar = $("#adhaar").val();
+        var photo = $("#fileimage").val();
+        var add = $("#inputAddress2").val();
+        var inputState = $("#inputstate").val();
+        var city = $("#inputCity").val();
+        var zip = $("#inputZip").val();
+        var phone = $("#inputmobile").val();
+        var gridcheck = document.getElementById("gridCheck").checked;
+
+        if (
+          fname == "" ||
+          lname == "" ||
+          pass == "" ||
+          birth == "" ||
+          gender == "" ||
+          adhaar == "" ||
+          photo == "" ||
+          add == "" ||
+          inputState == "" ||
+          city == "" ||
+          zip == "" ||
+          phone == "" ||
+          gridcheck == false
+        ) {
+          swal({
+            title: "Fields empty",
+            text: "Please check the fields",
+            icon: "warning",
+            button: "ok",
+          });
+        } else if (adhaar.length != 12) {
+          swal({
+            title: "Please enter a 12 digit Adhar ID",
+            text: "Please check your details",
+            icon: "warning",
+            button: "ok",
+          });
+        } else if (cond == false) {
+          swal({
+            title: "Please check your password again",
+            text: "You need to satisfy all the mentioned conditions",
+            icon: "warning",
+            button: "ok",
+          });
+        } else if (phone.length != 10) {
+          swal({
+            title: "Please enter a 10 digit mobile number",
+            text: "Please check your details",
+            icon: "warning",
+            button: "ok",
+          });
+        } else {
+          swal({
+            title: "Are you sure ?",
+            text: "Click OK to continue and CANCEL to go back.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              document.getElementById("btn1").click();
+              swal({
+                title: "Registration Successful",
+                text: "Redirecting you to the Login Page",
+                icon: "success",
+                buttons: false,
+              }).then(function () {
+                //document.getElementById("btn1").click();
+                document.write("Redirecting to Index Page");
+                document.location.href = "/index";
+              });
+            } else {
+              swal("Your data is not save!");
+            }
+          });
+        }
+      }
+
+      $(document).ready(function () {
+        $("#fileimage").change(function () {
+          showImageThumbnail(this);
+        });
+      });
+
+      function showImageThumbnail(fileInput) {
+        
+
+        file = fileInput.files[0];
+        reader = new FileReader();
+
+        reader.onload = function (e) {
+          $("#thumbnail").attr("src", e.target.result);
+          $("#thumbnail").css("display", "block");
+        };
+        reader.readAsDataURL(file);
+      }
     </script>
   </body>
 </html>
