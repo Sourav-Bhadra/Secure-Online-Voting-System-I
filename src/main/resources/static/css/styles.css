@@ -74,3 +74,45 @@ h3 {
     color: white;
     width: 50%;
 }
+
+/* =================================================================================================== */
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display: none;
+    
+    color: #000;
+    position: relative;
+    padding: 0px;
+    margin-top: 2px;
+}
+
+#message p {
+    padding: 5px 35px;
+    font-size: 10px;
+    
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    padding-left: 20px;
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    padding-left: 20px;
+    position: relative;
+    left: -35px;
+    content: "❌";
+}

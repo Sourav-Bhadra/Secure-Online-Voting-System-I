@@ -36,7 +36,9 @@ public class EmailService {
             m.setFrom(from);
             m.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             m.setSubject(subject);
-            m.setText(message);
+        //    m.setText(message);
+
+            m.setContent(message,"text/html");
 
             // step 3 : send message
             Transport.send(m);
