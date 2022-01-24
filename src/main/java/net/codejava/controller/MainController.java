@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import net.codejava.helper.Message;
 import net.codejava.model.User;
 import net.codejava.repository.UserRepo;
+import net.codejava.service.EmailService;
 import net.codejava.service.UserService;
 
 @Controller
@@ -44,6 +45,15 @@ public class MainController {
 	@GetMapping("/index")
 	public String signIn() {
 		return "index.html";
+	}
+	@GetMapping("/news")
+	public String news(){
+		return "news.html";
+	}
+
+	@GetMapping("/contact")
+	public String contact(){
+		return  "contact.html";
 	}
 
 	@GetMapping("/usernameexist")
@@ -136,11 +146,11 @@ public class MainController {
 
 			System.out.println(user);
 
-			session.setAttribute("message", new Message("Successful","success"));
+			session.setAttribute("message", new Message("Your details are updated Successfully","success"));
 			
 	}
 		catch(Exception e){
-			session.setAttribute("message", new Message("Unsuccessful","danger"));
+			session.setAttribute("message", new Message("Some error occured","danger"));
 			e.printStackTrace();
 		}
 			return "redirect:/public/home/account";
@@ -149,6 +159,31 @@ public class MainController {
 	@GetMapping("/error")
 	public String errorpage() {
 		return "error.html";
+	}
+
+	//send mail from contact us -------------------------------------------------------------
+	@Autowired
+	EmailService emailservice;
+
+	@PostMapping("/sendemail")
+	public String sendEmail(@RequestParam("fullname") String name, @RequestParam("email") String email,@RequestParam("message") String message ) {
+
+
+		System.out.println("Email: " + email);
+		
+
+		String subject = "Message from "+name+" from Contact Us section";
+		
+		String to = "sharereport3@gmail.com";
+		boolean f =this.emailservice.sendEmail(subject, message, to);
+
+		if (f==true)
+			return "redirect:/index";
+
+		else
+			return "redirect:/contact";
+		
+		
 	}
 
 }

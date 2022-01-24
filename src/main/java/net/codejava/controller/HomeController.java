@@ -85,7 +85,7 @@ public class HomeController {
 		// there is character in a string
 		while ((st = reader.readLine()) != null) {
 			System.out.println(st.length());
-			c = st.charAt(12);
+			c = st.charAt(13);
 		}
 		// Print the string
 		System.out.println(c);
@@ -116,7 +116,7 @@ public class HomeController {
 
 		String subject = "OTP from SVOC";
 		String message = " " +
-				"Your OTP is "+
+				"Hi "+username+" Your OTP is "+
 				 "<b>" +
 				otp +
 				"</b>" +
