@@ -1,3 +1,4 @@
+//  ********************************** use for forget password  ******************************************
 package net.codejava.controller;
 
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,8 @@ public class ForgotPasswordController {
 
     }
 
+    // ---------------------------------------------------------------------- //
+
     @PostMapping("/verify-otp")
     public String verify(@RequestParam("digit-1") String d1,@RequestParam("digit-2") String d2,@RequestParam("digit-3") String d3,@RequestParam("digit-4") String d4,@RequestParam("digit-5") String d5,@RequestParam("digit-6") String d6, HttpSession session) {
 		
@@ -92,9 +95,12 @@ public class ForgotPasswordController {
 
             return "newpassword.html";
         }
-        return "logout.html";
+        return "/index";
     }
 
+    // -------------------------------------------------- //
+
+    // Give new password to update 
     @PostMapping("/newpassword")
 	public String newpassword(@RequestParam("password") String newpassword, HttpSession session) {
 		String username = (String) session.getAttribute("username");

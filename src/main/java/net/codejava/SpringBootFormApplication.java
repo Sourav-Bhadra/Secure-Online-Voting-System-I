@@ -23,6 +23,8 @@ public class SpringBootFormApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 	
+		// Admin id and password
+
 		User user1= new User();
 		user1.setUsername("admin");
 		

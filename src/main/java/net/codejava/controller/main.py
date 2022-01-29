@@ -9,13 +9,6 @@ import urllib
 var = 0
 p = ''
 
-# def match():
-#         print("not match")
-
-
-# def notmatch():
-#     print ("notmatch")
-
 
 mydb = mysql.connector.connect(
     host="localhost", user="root", password="Sourav100", database="college_project")
@@ -30,7 +23,7 @@ print(p)
 
 
 video_capture = cv2.VideoCapture(0)
-# address = "http://192.168.0.102:8080/video"
+# address = "http://192.168.0.102:8080/video" # [from mobile camera]
 # video_capture.open(address)
 path = "C:\\Users\\Sourav\\Desktop\\Springboot vote\\user-photos\\"
 path1 = path+sys.argv[1]+"\\"+p
@@ -71,9 +64,6 @@ while True:
         cv2.putText(frame, name, (left+6, bottom-6),
                     font, 1.0, (255, 255, 255), 1)
 
-    # if(name1 == n):
-    #     time.sleep(20)
-    #     p='k'
 
     cv2.imshow('Webcam_facerecognition', frame)
 
@@ -91,7 +81,8 @@ while True:
 
 video_capture.release()
 cv2.destroyAllWindows()
-print("go")
+# print("go") # [Uncomment if required]
+
 if var == 1:
     print("match")
     text_file = open(

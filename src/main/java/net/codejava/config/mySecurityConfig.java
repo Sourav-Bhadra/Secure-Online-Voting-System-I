@@ -34,7 +34,8 @@ public class mySecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 			.loginPage("/index")
 			.loginProcessingUrl("/dologin")
-			.defaultSuccessUrl("/default",true)
+			.defaultSuccessUrl("/default",true) 
+			// if login is successfull, system will be redirected to this url(/default)
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index");
 			

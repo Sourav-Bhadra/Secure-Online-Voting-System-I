@@ -3,16 +3,12 @@ package net.codejava.controller;
 import java.io.File;
 import java.security.Principal;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-//import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
-
 import net.codejava.model.User;
 import net.codejava.service.UserService;
 
@@ -30,10 +26,8 @@ public class UserSecurityController {
 		String username = principle.getName();
 		User user = userService.getUser(username);
 		model.addAttribute("currentUser", user);
-		
 		List<User> users = userService.getAllUsers();
 		model.addAttribute("users", users);
-		
 		return "users.html";
 	}
 
@@ -44,14 +38,12 @@ public class UserSecurityController {
 		return this.userService.getUser(userName);
 	}
 	
-	
+	// when update photo delete previous photo from directory
 	@GetMapping("/removeFile/{username}/{fileName}")
 	public String removeFileHandler (@PathVariable("username") String username, @PathVariable("fileName") String fileName, Model model) {		
 		//ModelAndView mav = new ModelAndView("redirect:/image-upload/employees");
 		String path = null;
 		File file =null;
-
-		//User savedUser = userService.getUser(username);
 
 		try{
 			path = "user-photos/" + username;
@@ -60,10 +52,8 @@ public class UserSecurityController {
 			if(file.exists())
 			{
 				boolean status = userService.deleteUser(username,fileName,path);
-				
 				List<User> users = userService.getAllUsers();
 				model.addAttribute("users", users);
-				
 				return "redirect:/users/";
 			}
 		}
@@ -73,9 +63,4 @@ public class UserSecurityController {
 		return "redirect:/users/";
 	}
 		
-	//for adding user
-	//@PostMapping("/")
-	//public Usersecurity addUser(Usersecurity user) {
-	//	return this.addUser(user);
-	//}
 }
