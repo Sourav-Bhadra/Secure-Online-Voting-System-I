@@ -1,5 +1,6 @@
 package net.codejava.helper;
 
+//This class is used for showing message during updating account.
 public class Message {
     
     private String content;

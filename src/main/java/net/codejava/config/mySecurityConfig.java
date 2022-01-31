@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import net.codejava.service.CustomUserDetailsService;
 
 
@@ -48,8 +47,7 @@ public class mySecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		//auth.inMemoryAuthentication().withUser("gunjan").password(this.passwordEncoder().encode("1234")).roles("ADMIN");
-		//auth.inMemoryAuthentication().withUser("surya").password(this.passwordEncoder().encode("1234")).roles("USER");
+		// spring security provides authentication
 	}
 	
 	@Bean
