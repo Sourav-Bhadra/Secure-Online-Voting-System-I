@@ -1,3 +1,5 @@
+from ast import IsNot
+import os
 import sys
 import numpy as np
 import face_recognition
@@ -25,8 +27,11 @@ print(p)
 video_capture = cv2.VideoCapture(0)
 # address = "http://192.168.0.102:8080/video" # [from mobile camera]
 # video_capture.open(address)
-path = "C:\\Users\\Sourav\\Desktop\\Springboot vote\\user-photos\\"
-path1 = path+sys.argv[1]+"\\"+p
+path = "user-photos\\"
+
+print(path)
+
+path1 = path+"\\"+sys.argv[1]+"\\"+p
 sou_image = face_recognition.load_image_file(path1)
 sou_image = cv2.cvtColor(sou_image, cv2.COLOR_RGB2BGR)
 print(path1)
@@ -40,7 +45,9 @@ while True:
     ret, frame = video_capture.read()
 
     rgb_frame = frame[:, :, ::-1]
+    
     face_location = face_recognition.face_locations(rgb_frame)
+    print(face_location)
     face_encoding = face_recognition.face_encodings(rgb_frame, face_location)
 
     for(top, right, bottom, left), face_encoding in zip(face_location, face_encoding):
@@ -57,7 +64,7 @@ while True:
             name1 = name
 
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
+      
         cv2.rectangle(frame, (left, bottom - 35),
                       (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_SIMPLEX
@@ -69,15 +76,17 @@ while True:
 
     if cv2.waitKey(10) & 0xFF == ord('k'):
 
-        if (name1 == n):
-            print(name1)
-            var = 1
-            # time.sleep(10)
-            break
+        print(len(face_location))
+        if (name1 == n) and len(face_location) != 0:
+                print(name1)
+                var = 1
+                # time.sleep(10)
+                break
         else:
-            print("else executed")
-            time.sleep(10)
-            break
+                print("else executed")
+                time.sleep(10)
+                break
+      
 
 video_capture.release()
 cv2.destroyAllWindows()
@@ -85,14 +94,12 @@ cv2.destroyAllWindows()
 
 if var == 1:
     print("match")
-    text_file = open(
-        "C:\\Users\\Sourav\\Desktop\\Springboot vote\\src\\main\\resources\\templates/out.txt", "w")
+    text_file = open("src\\main\\resources\\templates/out.txt", "w")
     text_file.write(sys.argv[1] + " 1")
     text_file.close()
 
 else:
     print("not match")
-    text_file = open(
-        "C:\\Users\\Sourav\\Desktop\\Springboot vote\\src\\main\\resources\\templates/out.txt", "w")
+    text_file = open("src\\main\\resources\\templates/out.txt", "w")
     text_file.write(sys.argv[1] + " 0")
     text_file.close()
