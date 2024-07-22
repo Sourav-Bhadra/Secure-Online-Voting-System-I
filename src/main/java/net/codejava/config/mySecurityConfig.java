@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import net.codejava.service.CustomUserDetailsService;
 
 
@@ -23,7 +22,7 @@ public class mySecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/index","/register","/js/**","/css/**","/fonts/**","/images/**","/inc/**","/scss/**","/plugin/**","/templates/register","/SweetAlert/**","/Register","/error","/forgotpassword/**").permitAll()
+			.antMatchers("/index","/register","/js/**","/css/**","/fonts/**","/images/**","/inc/**","/scss/**","/plugin/**","/templates/register","/SweetAlert/**","/Register","/error","/forgotpassword/**","/news","/contact", "/sendemail","/video/**").permitAll()
 			.antMatchers("/public/**").hasRole("USER")//only people with role user can access these pages
 			.antMatchers("/users/**").hasRole("ADMIN")
 			//.antMatchers("/public/**").permitAll() doesnt authenticate these pages
@@ -34,7 +33,8 @@ public class mySecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 			.loginPage("/index")
 			.loginProcessingUrl("/dologin")
-			.defaultSuccessUrl("/default",true)
+			.defaultSuccessUrl("/default",true) 
+			// if login is successfull, system will be redirected to this url(/default)
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index");
 			
@@ -47,8 +47,7 @@ public class mySecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		//auth.inMemoryAuthentication().withUser("gunjan").password(this.passwordEncoder().encode("1234")).roles("ADMIN");
-		//auth.inMemoryAuthentication().withUser("surya").password(this.passwordEncoder().encode("1234")).roles("USER");
+		// spring security provides authentication
 	}
 	
 	@Bean

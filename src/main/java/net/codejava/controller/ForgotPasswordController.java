@@ -1,9 +1,7 @@
+//  ********************************** use for forget password  ******************************************
 package net.codejava.controller;
 
 import javax.servlet.http.HttpSession;
-
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import net.codejava.model.User;
 import net.codejava.repository.UserRepo;
 import net.codejava.service.EmailService;
@@ -24,7 +21,6 @@ public class ForgotPasswordController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    Random random = new Random(1000);
 
     @Autowired
     UserService userservice;
@@ -75,6 +71,8 @@ public class ForgotPasswordController {
 
     }
 
+    // ---------------------------------------------------------------------- //
+
     @PostMapping("/verify-otp")
     public String verify(@RequestParam("digit-1") String d1,@RequestParam("digit-2") String d2,@RequestParam("digit-3") String d3,@RequestParam("digit-4") String d4,@RequestParam("digit-5") String d5,@RequestParam("digit-6") String d6, HttpSession session) {
 		
@@ -92,9 +90,12 @@ public class ForgotPasswordController {
 
             return "newpassword.html";
         }
-        return "logout.html";
+        return "/index";
     }
 
+    // -------------------------------------------------- //
+
+    // Give new password to update 
     @PostMapping("/newpassword")
 	public String newpassword(@RequestParam("password") String newpassword, HttpSession session) {
 		String username = (String) session.getAttribute("username");

@@ -22,7 +22,9 @@ public class SpringBootFormApplication implements CommandLineRunner{
 	private BCryptPasswordEncoder passwordEncoder;
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+	
+		// Admin id and password
+
 		User user1= new User();
 		user1.setUsername("admin");
 		
